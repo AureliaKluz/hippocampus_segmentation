@@ -1,0 +1,16 @@
+# Segmentacja i ocena wolumetryczna hipokampu z danych MRI
+
+Kod do pracy inżynierskiej: segmentacja hipokampU (3D U-Net, MONAI/PyTorch) na zbiorze Medical Segmentation Decathlon (Task04_Hippocampus) i ocena
+objętości. Ewaluacja: współczynnik Dice'a i odległość Hausdorffa.
+
+## Dane
+Dane nie są częścią repozytorium. Należy pobrać Task04_Hippocampus ze strony http://medicaldecathlon.com/ i rozpakuj do `data/Task04_Hippocampus/`.
+Licencja zbioru: CC-BY-SA 4.0.
+
+## Środowisko
+Python 3.12. PyTorch, pozostałe biblioteki znajdują się w `requirements.txt`.
+
+## Użycie
+- `python src/dataset_summary.py`: analiza zbioru (CSV w `results/`)
+- `python src/make_split.py`: podział train/val/test (`configs/split.json`)
+- `python src/train.py --name baseline`: trening

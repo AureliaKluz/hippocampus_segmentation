@@ -1,0 +1,3 @@
+epoch,train_loss,val_dice_anterior,val_dice_posterior,val_dice_mean,seconds
+1,1.8795,0.0295,0.0174,0.0235,1.7
+2,1.7678,0.0415,0.0196,0.0306,1.1
