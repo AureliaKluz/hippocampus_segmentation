@@ -29,6 +29,8 @@ parser.add_argument("--limit", type=int, default=0,
 parser.add_argument("--workers", type=int, default=0)
 parser.add_argument("--cache", action="store_true",
                     help="trzymaj przetworzone dane w pamięci RAM")
+parser.add_argument("--augment", action="store_true",
+                    help="augmentacje danych treningowych")
 args = parser.parse_args()
 
 set_determinism(seed=args.seed)
@@ -49,7 +51,8 @@ print(config)
 
 
 def make_loader(split, shuffle):
-    ds = get_dataset(split, cache=args.cache)
+    ds = get_dataset(split, cache=args.cache,
+                     augment=args.augment and split == "train")
     if args.limit:
         ds = Subset(ds, range(min(args.limit, len(ds))))
     return DataLoader(ds, batch_size=args.batch_size, shuffle=shuffle,
