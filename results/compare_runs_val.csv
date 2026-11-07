@@ -1,0 +1,4 @@
+run,channels,augment,best_epoch,dice_ant,dice_post,dice_whole,hd95_whole,abs_relerr_whole_%
+baseline,16-32-64-128-256,False,30,0.8787,0.8648,0.8924,1.2413,4.1228
+aug,16-32-64-128-256,True,80,0.8909,0.8771,0.9021,1.1381,3.8404
+aug_wide,32-64-128-256-512,True,109,0.8912,0.8773,0.9016,1.1381,3.9635
