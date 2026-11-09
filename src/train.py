@@ -8,12 +8,12 @@ import torch
 from monai.data import DataLoader, decollate_batch
 from monai.losses import DiceCELoss
 from monai.metrics import DiceMetric
-from monai.networks.nets import UNet
 from monai.transforms import AsDiscrete
 from monai.utils import set_determinism
 from torch.utils.data import Subset
 
 from hippo_data import PROJECT_ROOT, get_dataset
+from models import build_model
 
 parser = argparse.ArgumentParser()
 parser.add_argument("--name", required=True, help="nazwa uruchomienia")
@@ -23,6 +23,11 @@ parser.add_argument("--lr", type=float, default=1e-3)
 parser.add_argument("--channels", type=int, nargs="+",
                     default=[16, 32, 64, 128, 256])
 parser.add_argument("--res-units", type=int, default=2)
+parser.add_argument("--arch", default="unet", choices=["unet", "unetr"])
+parser.add_argument("--feature-size", type=int, default=16)
+parser.add_argument("--hidden-size", type=int, default=768)
+parser.add_argument("--mlp-dim", type=int, default=3072)
+parser.add_argument("--num-heads", type=int, default=12)
 parser.add_argument("--seed", type=int, default=42)
 parser.add_argument("--limit", type=int, default=0,
                     help="użyj tylko N pierwszych przypadków (test lokalny)")
@@ -62,14 +67,7 @@ def make_loader(split, shuffle):
 train_loader = make_loader("train", shuffle=True)
 val_loader = make_loader("val", shuffle=False)
 
-model = UNet(
-    spatial_dims=3,
-    in_channels=1,
-    out_channels=3,
-    channels=tuple(args.channels),
-    strides=(2,) * (len(args.channels) - 1),
-    num_res_units=args.res_units,
-).to(device)
+model = build_model(vars(args)).to(device)
 print("Liczba parametrów:", sum(p.numel() for p in model.parameters()))
 
 loss_fn = DiceCELoss(to_onehot_y=True, softmax=True)

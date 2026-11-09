@@ -1,0 +1,22 @@
+{
+  "name": "baseline_s44",
+  "epochs": 150,
+  "batch_size": 4,
+  "lr": 0.001,
+  "channels": [
+    16,
+    32,
+    64,
+    128,
+    256
+  ],
+  "res_units": 2,
+  "seed": 44,
+  "limit": 0,
+  "workers": 2,
+  "cache": true,
+  "augment": false,
+  "device": "cuda",
+  "torch": "2.14.1+cu130",
+  "monai": "1.6.1"
+}

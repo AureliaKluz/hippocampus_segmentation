@@ -4,7 +4,6 @@ import matplotlib
 import numpy as np
 import pandas as pd
 import torch
-from monai.networks.nets import UNet
 from scipy import ndimage
 from scipy.stats import pearsonr
 
@@ -12,6 +11,7 @@ matplotlib.use("Agg")
 import matplotlib.pyplot as plt
 
 from hippo_data import PROJECT_ROOT, get_dataset
+from models import build_model
 
 parser = argparse.ArgumentParser()
 parser.add_argument("--name", required=True, help="nazwa uruchomienia")
@@ -30,14 +30,7 @@ with open(run_dir / "config.json", encoding="utf-8") as f:
     cfg = json.load(f)
 
 device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
-model = UNet(
-    spatial_dims=3,
-    in_channels=1,
-    out_channels=3,
-    channels=tuple(cfg["channels"]),
-    strides=(2,) * (len(cfg["channels"]) - 1),
-    num_res_units=cfg["res_units"],
-).to(device)
+model = build_model(cfg).to(device)
 model.load_state_dict(
     torch.load(run_dir / args.checkpoint, map_location=device))
 model.eval()
