@@ -9,6 +9,7 @@ runs_dir = project_root / "results" / "runs"
 groups = {
     "baseline": ["baseline", "baseline_s43", "baseline_s44"],
     "aug": ["aug", "aug_s43", "aug_s44"],
+    "unetr": ["unetr", "unetr_s43", "unetr_s44"],
 }
 
 rows = []
