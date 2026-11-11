@@ -1,0 +1,9 @@
+﻿Metryka,3D U-Net bez augmentacji,3D U-Net z augmentacjami,UNETR z augmentacjami
+Dice Anterior,0.877 ± 0.002,0.891 ± 0.001,0.887 ± 0.001
+Dice Posterior,0.864 ± 0.001,0.877 ± 0.003,0.874 ± 0.001
+Dice całość,0.891 ± 0.001,0.902 ± 0.001,0.902 ± 0.001
+HD całość [mm],3.22 ± 0.11,3.00 ± 0.15,2.83 ± 0.13
+HD95 całość [mm],1.24 ± 0.02,1.14 ± 0.02,1.22 ± 0.03
+Błąd względny objętości [%],4.14 ± 0.02,4.12 ± 0.24,4.55 ± 0.60
+Obciążenie objętości [mm³],10 ± 36,59 ± 41,64 ± 38
+Korelacja objętości r,0.921 ± 0.007,0.933 ± 0.001,0.919 ± 0.011

@@ -1,0 +1,4 @@
+﻿model,parametry,plik_modelu_MB,epoka_GPU_s,trening_150_epok_min,wnioskowanie_CPU_ms
+3D U-Net bez augmentacji,4807482,19.3,7.8,19.5,96.0
+3D U-Net z augmentacjami,4807482,19.3,8.4,21.1,96.0
+UNETR z augmentacjami,92664051,370.7,19.9,49.8,276.0
